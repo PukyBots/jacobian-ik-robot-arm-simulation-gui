@@ -16,7 +16,15 @@ import numpy as np
 from PyQt5 import QtWidgets, QtCore
 import pyqtgraph as pg
 
+<<<<<<< HEAD
 from arm_model_joint_angle_far import PlanarArm
+=======
+<<<<<<< HEAD
+from arm_model_me import PlanarArm
+=======
+from arm_model_joint_angle_far import PlanarArm
+>>>>>>> 7ebb289 (Added files)
+>>>>>>> aab5e08 (Added files)
 
 
 # ============================================================

@@ -1,3 +1,23 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+"""
+Pick-and-place GUI for the planar robotic arm.
+
+Features:
+    - Dynamic Pick & Place target inputs via QDoubleSpinBox
+    - Visual markers update live with coordinate input changes
+    - Manual joint control using sliders with real-time degree labels
+    - Live end-effector position readout
+    - Jacobian-based inverse kinematics
+    - Smooth pick-and-place animation using QTimer
+    - Object follows the end effector while holding
+    - Clean, modern PyQt5 / pyqtgraph styling
+"""
+
+=======
+>>>>>>> 7ebb289 (Added files)
+>>>>>>> aab5e08 (Added files)
 import sys
 import numpy as np
 
@@ -203,12 +223,28 @@ class ArmWindow(QtWidgets.QMainWindow):
 
         # Pick and Place labels
         self.pick_label = pg.TextItem(
+<<<<<<< HEAD
             "",
+=======
+<<<<<<< HEAD
+            "PICK",
+=======
+            "",
+>>>>>>> 7ebb289 (Added files)
+>>>>>>> aab5e08 (Added files)
             anchor=(0.5, 1.5)
         )
 
         self.place_label = pg.TextItem(
+<<<<<<< HEAD
             "",
+=======
+<<<<<<< HEAD
+            "PLACE",
+=======
+            "",
+>>>>>>> 7ebb289 (Added files)
+>>>>>>> aab5e08 (Added files)
             anchor=(0.5, 1.5)
         )
 
@@ -260,17 +296,34 @@ class ArmWindow(QtWidgets.QMainWindow):
         target_grid.setSpacing(8)
 
         # Pick X, Y SpinBoxes
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        target_grid.addWidget(QtWidgets.QLabel("Pick X:"), 0, 0)
+=======
+>>>>>>> aab5e08 (Added files)
         pick_x_label = QtWidgets.QLabel(
             "<span style='color: #a6e3a1; font-size: 14px;'>●</span> Pick X:"
             )
         target_grid.addWidget(pick_x_label, 0, 0)
+<<<<<<< HEAD
+=======
+>>>>>>> 7ebb289 (Added files)
+>>>>>>> aab5e08 (Added files)
         self.pick_x_spin = QtWidgets.QDoubleSpinBox()
         self.pick_x_spin.setRange(-8.0, 8.0)
         self.pick_x_spin.setSingleStep(0.5)
         self.pick_x_spin.setValue(DEFAULT_PICK_POS[0])
         target_grid.addWidget(self.pick_x_spin, 0, 1)
 
+<<<<<<< HEAD
         
+=======
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 7ebb289 (Added files)
+>>>>>>> aab5e08 (Added files)
         target_grid.addWidget(QtWidgets.QLabel("Pick Y:"), 0, 2)
         self.pick_y_spin = QtWidgets.QDoubleSpinBox()
         self.pick_y_spin.setRange(-8.0, 8.0)
@@ -279,10 +332,20 @@ class ArmWindow(QtWidgets.QMainWindow):
         target_grid.addWidget(self.pick_y_spin, 0, 3)
 
         # Place X, Y SpinBoxes
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        target_grid.addWidget(QtWidgets.QLabel("Place X:"), 1, 0)
+=======
+>>>>>>> aab5e08 (Added files)
         place_x_label = QtWidgets.QLabel(
                 "<span style='color: #74c7ec; font-size: 14px;'>■</span> Place X:"
             )
         target_grid.addWidget(place_x_label, 1, 0)
+<<<<<<< HEAD
+=======
+>>>>>>> 7ebb289 (Added files)
+>>>>>>> aab5e08 (Added files)
         self.place_x_spin = QtWidgets.QDoubleSpinBox()
         self.place_x_spin.setRange(-8.0, 8.0)
         self.place_x_spin.setSingleStep(0.5)
@@ -348,7 +411,15 @@ class ArmWindow(QtWidgets.QMainWindow):
         controls_layout.addWidget(info_group)
 
         # 4. ACTION BUTTON
+<<<<<<< HEAD
         self.run_button = QtWidgets.QPushButton("Run Pick and Place Sequence")
+=======
+<<<<<<< HEAD
+        self.run_button = QtWidgets.QPushButton("Run Pick & Place Sequence")
+=======
+        self.run_button = QtWidgets.QPushButton("Run Pick and Place Sequence")
+>>>>>>> 7ebb289 (Added files)
+>>>>>>> aab5e08 (Added files)
         self.run_button.setCursor(QtCore.Qt.PointingHandCursor)
         self.run_button.clicked.connect(self.on_run_pick_and_place)
         controls_layout.addWidget(self.run_button)
@@ -415,10 +486,23 @@ class ArmWindow(QtWidgets.QMainWindow):
         # ============================================================
 
         labels = [
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+            "BASE",
+            "JOINT 1",
+            "JOINT 2",
+            "JOINT 3"
+=======
+>>>>>>> aab5e08 (Added files)
             "B",
             "J1",
             "J2",
             "EE"
+<<<<<<< HEAD
+=======
+>>>>>>> 7ebb289 (Added files)
+>>>>>>> aab5e08 (Added files)
         ]
 
         for i, (x, y) in enumerate(points):
@@ -426,7 +510,15 @@ class ArmWindow(QtWidgets.QMainWindow):
             if i == len(points) - 1:
 
                 # Last point = End Effector
+<<<<<<< HEAD
                 text = "EE"
+=======
+<<<<<<< HEAD
+                text = "END EFFECTOR"
+=======
+                text = "EE"
+>>>>>>> 7ebb289 (Added files)
+>>>>>>> aab5e08 (Added files)
 
             else:
 
