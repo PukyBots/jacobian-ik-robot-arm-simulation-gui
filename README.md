@@ -348,22 +348,6 @@ This allows the operator to immediately interrupt the automatic pick-and-place o
 
 ---
 
-# 📍 End-Effector Tracking
-
-The GUI continuously calculates and displays the current end-effector position.
-
-For example:
-
-```text
-End effector: (4.02, 1.98)
-```
-
-This position is calculated using the robot's forward kinematics.
-
-The displayed position therefore provides immediate feedback during both manual and automatic motion.
-
----
-
 # ⚙️ Installation
 
 ## 1. Clone the repository
@@ -407,19 +391,6 @@ python gui_app_updated.py
 ```
 
 The PyQt5 GUI will open with the simulated robotic arm.
-
----
-
-# 📦 Requirements
-
-Create a `requirements.txt` file containing:
-
-```text
-numpy
-PyQt5
-pyqtgraph
-scipy
-```
 
 ---
 
