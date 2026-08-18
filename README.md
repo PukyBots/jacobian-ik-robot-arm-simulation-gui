@@ -53,7 +53,7 @@ The theoretical maximum arm length is:
 
 | Joint | Minimum | Maximum |
 |------|--------:|--------:|
-| Joint 1 | 0° | 180° |
+| Joint 1 | -180° | 180° |
 | Joint 2 | -120° | 120° |
 | Joint 3 | -120° | 120° |
 
@@ -257,72 +257,9 @@ This helps avoid abrupt or undesirable configurations.
 
 ---
 
-# 🔒 Joint Limits and Physical Constraints
-
-The IK solution is checked against the defined joint limits.
-
-A candidate configuration is rejected if it violates the allowed joint ranges.
-
-Current limits:
-
-```text
-Joint 1:   0° → 180°
-Joint 2: -120° → 120°
-Joint 3: -120° → 120°
-```
-
-The implementation also considers the physical base/ground constraint so that undesirable configurations where the arm moves below the base can be rejected.
-
-This helps prevent the IK solver from selecting mathematically valid but physically undesirable configurations.
-
----
-
-# 🌐 Workspace Visualization
-
-The GUI displays the robot's reachable workspace.
-
-The theoretical maximum reach is:
-
-```text
-R = L₁ + L₂ + L₃
-
-R = 3.0 + 2.0 + 1.5
-
-R = 6.5 units
-```
-
-However, the actual reachable workspace is affected by:
-
-- Joint 1 limits
-- Joint 2 limits
-- Joint 3 limits
-- Physical base constraints
-
-Therefore, the reachable workspace is **not necessarily a complete circle**.
-
-The GUI visualizes the workspace based on the robot's joint constraints rather than assuming that every point inside a radius of 6.5 units is reachable.
-
----
-
 # 🎯 Pick and Place
 
 The GUI allows the user to specify custom pick and place coordinates.
-
-### Default Pick Position
-
-```text
-X = 4.0
-Y = 2.0
-```
-
-### Default Place Position
-
-```text
-X = -3.0
-Y = 3.0
-```
-
-These values can be changed directly from the GUI.
 
 The pick-and-place sequence is:
 
@@ -364,15 +301,14 @@ The graphical interface is implemented using:
 - Pick X/Y position controls
 - Place X/Y position controls
 - End-effector position display
-- Joint labels
-- Base label
-- Pick and place labels
-- End-effector label
+- Labels for Joints, Base, Ende Effector
 - Robot visualization
 - Reachable workspace visualization
 - Moving object visualization
 - Robot status display
 - Automatic pick-and-place button
+- Reset position button
+- Joints in rad/deg and error values printed
 
 ---
 
@@ -381,28 +317,6 @@ The graphical interface is implemented using:
 The animation uses a **Qt `QTimer`** rather than a blocking loop with `time.sleep()`.
 
 The robot motion is divided into small incremental updates.
-
-```text
-QTimer
-   │
-   ▼
-Calculate next configuration
-   │
-   ▼
-Update robot
-   │
-   ▼
-Redraw GUI
-   │
-   ▼
-Return control to Qt
-   │
-   ▼
-Process mouse / slider events
-   │
-   ▼
-Next timer update
-```
 
 Because the main GUI thread is not blocked by a long-running loop, the window remains responsive during robot motion.
 
@@ -450,43 +364,12 @@ The displayed position therefore provides immediate feedback during both manual 
 
 ---
 
-# 📁 Project Structure
-
-```text
-planar-arm-jacobian-ik/
-│
-├── arm_model.py
-│   ├── PlanarArm
-│   ├── Forward Kinematics
-│   ├── Numerical Jacobian
-│   ├── Damped Least-Squares IK
-│   ├── Joint Limits
-│   └── Workspace Constraints
-│
-├── gui_app.py
-│   ├── PyQt5 GUI
-│   ├── PyQtGraph Visualization
-│   ├── Joint Sliders
-│   ├── Pick & Place Controls
-│   ├── Workspace Visualization
-│   └── Motion Animation
-│
-├── requirements.txt
-│
-├── README.md
-│
-└── screenshots/
-    └── simulation.png
-```
-
----
-
 # ⚙️ Installation
 
 ## 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/jacobian-ik-robot-arm-simulation-gui.git
+git clone https://github.com/PukyBots/jacobian-ik-robot-arm-simulation-gui
 ```
 
 ```bash
@@ -502,12 +385,6 @@ py -m venv venv
 ```
 
 Activate the environment:
-
-```bash
-.\venv\Scripts\Activate.ps1
-```
-
-Alternatively:
 
 ```bash
 .\venv\Scripts\activate
@@ -526,7 +403,7 @@ pip install -r requirements.txt
 Run:
 
 ```bash
-python gui_app.py
+python gui_app_updated.py
 ```
 
 The PyQt5 GUI will open with the simulated robotic arm.
@@ -543,22 +420,6 @@ PyQt5
 pyqtgraph
 scipy
 ```
-
----
-
-# 🎮 How to Use
-
-## Manual Control
-
-Use the joint sliders to control:
-
-```text
-Joint 1
-Joint 2
-Joint 3
-```
-
-The end-effector position updates in real time.
 
 ---
 
@@ -581,30 +442,6 @@ The end-effector position updates in real time.
 During automatic motion, grab any joint slider.
 
 The automatic sequence is stopped and manual control is returned to the user.
-
----
-
-# 🧪 Example
-
-Default configuration:
-
-```text
-Link lengths:
-[3.0, 2.0, 1.5]
-
-Joint limits:
-J1: 0° to 180°
-J2: -120° to 120°
-J3: -120° to 120°
-
-Pick:
-(4.0, 2.0)
-
-Place:
-(-3.0, 3.0)
-```
-
-The robot calculates suitable joint configurations and performs the pick-and-place motion.
 
 ---
 
