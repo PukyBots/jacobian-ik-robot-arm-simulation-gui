@@ -786,33 +786,15 @@ if __name__ == "__main__":
     )
 
     print(
-<<<<<<< HEAD
+
         "Radians:", [f"{x:.2f}" for x in solution]
         )
 
     print(
         "Degrees:", [f"{x:.2f}" for x in np.degrees(solution)]
         )
-=======
-<<<<<<< HEAD
-        "Radians:",
-        solution
-    )
 
-    print(
-        "Degrees:",
-        np.degrees(solution)
-    )
-=======
-        "Radians:", [f"{x:.2f}" for x in solution]
-        )
-
-    print(
-        "Degrees:", [f"{x:.2f}" for x in np.degrees(solution)]
-        )
->>>>>>> 7ebb289 (Added files)
->>>>>>> aab5e08 (Added files)
-
+ 
     # ------------------------------------------------------------
     # Verify
     # ------------------------------------------------------------
@@ -825,17 +807,8 @@ if __name__ == "__main__":
         "\nFinal end effector:"
     )
 
-<<<<<<< HEAD
+
     print([f"{x:.2f}" for x in final_position])
-=======
-<<<<<<< HEAD
-    print(
-        final_position
-    )
-=======
-    print([f"{x:.2f}" for x in final_position])
->>>>>>> 7ebb289 (Added files)
->>>>>>> aab5e08 (Added files)
 
     # ------------------------------------------------------------
     # Position error
@@ -848,14 +821,6 @@ if __name__ == "__main__":
     )
 
     print(
-<<<<<<< HEAD
+
         "\nPosition error:" f"{error:.6f}"
-=======
-<<<<<<< HEAD
-        "\nPosition error:",
-        error
-=======
-        "\nPosition error:" f"{error:.6f}"
->>>>>>> 7ebb289 (Added files)
->>>>>>> aab5e08 (Added files)
     )
