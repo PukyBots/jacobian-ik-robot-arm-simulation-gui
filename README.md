@@ -53,7 +53,7 @@ The theoretical maximum arm length is:
 
 | Joint | Minimum | Maximum |
 |------|--------:|--------:|
-| Joint 1 | -180° | 180° |
+| Joint 1 | 0° | 180° |
 | Joint 2 | -120° | 120° |
 | Joint 3 | -120° | 120° |
 
