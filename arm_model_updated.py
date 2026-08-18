@@ -1,16 +1,4 @@
-"""
-Simple planar 2D robotic arm.
-
-Features:
-    - Forward Kinematics
-    - Numerical Jacobian
-    - Multiple-solution Inverse Kinematics
-    - Selects solution with minimum joint movement
-    - Handles unreachable targets by projecting to workspace boundary
-"""
-
 import numpy as np
-
 
 class PlanarArm:
 
@@ -222,33 +210,7 @@ class PlanarArm:
         q3_samples=361,
         tolerance=1e-5
     ):
-        """
-        Find multiple IK solutions and select the solution
-        requiring the smallest total joint movement.
-
-        For a 3-link planar arm:
-
-            q1
-            q2
-            q3
-
-        The target specifies only:
-
-            x
-            y
-
-        Therefore there are multiple possible solutions.
-
-        We search over possible q3 values and solve the
-        remaining geometry analytically.
-
-        The selected solution minimizes:
-
-            |dq1| + |dq2| + |dq3|
-
-        relative to the current configuration.
-        """
-
+       
         # ========================================================
         # TARGET
         # ========================================================
@@ -309,17 +271,9 @@ class PlanarArm:
             target[1],
             target[0]
         )
-
-        # ========================================================
-        # STORE ALL VALID SOLUTIONS
-        # ========================================================
-
+    
         solutions = []
-
-        # ========================================================
-        # SEARCH OVER q3
-        # ========================================================
-
+    
         q3_values = np.linspace(
             -np.pi,
             np.pi,
@@ -327,24 +281,7 @@ class PlanarArm:
         )
 
         for q3 in q3_values:
-
-            # ----------------------------------------------------
-            # Combine link 2 and link 3
-            # ----------------------------------------------------
-            #
-            # Links 2 and 3 form an equivalent vector:
-            #
-            #       L3
-            #      /
-            #     /
-            #    L2
-            #
-            # Their combined vector has:
-            #
-            # magnitude = R
-            # angle     = beta
-            #
-
+        
             A = (
                 L2 +
                 L3 * np.cos(q3)
