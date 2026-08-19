@@ -332,7 +332,7 @@ class ArmWindow(QtWidgets.QMainWindow):
     def reset_home(self):
         if self.animation_timer.isActive():
             self.animation_timer.stop()
-        self.joint_angles = [0.0, 0.0, 0.0]
+        self.joint_angles = [1.57, 0.0, 0.0]
         self.holding_object = False
         self.object_pos = list(self.pick_pos)
         
